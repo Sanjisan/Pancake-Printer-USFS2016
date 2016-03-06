@@ -1,0 +1,10 @@
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\bin\Debug\Pancasso-Test.exe.config
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\bin\Debug\Pancasso-Test.exe
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\bin\Debug\Pancasso-Test.pdb
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Debug\Pancasso-Test.csprojResolveAssemblyReference.cache
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Debug\Pancasso_Test.Form1.resources
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Debug\Pancasso_Test.Properties.Resources.resources
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Debug\Pancasso-Test.csproj.GenerateResource.Cache
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Debug\Pancasso-Test.exe
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Debug\Pancasso-Test.pdb
+E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Debug\Pancasso_Test.mouseControlForm.resources
