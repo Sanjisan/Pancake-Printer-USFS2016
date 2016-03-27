@@ -9,3 +9,6 @@ E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Re
 E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Release\Pancasso-Test.pdb
 E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Release\Pancasso_Test.mouseControlForm.resources
 E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Release\Pancasso_Test.SerialMonitor.resources
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\bin\Release\Pancasso-Test.exe.config
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso-Test.exe
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso-Test.pdb
