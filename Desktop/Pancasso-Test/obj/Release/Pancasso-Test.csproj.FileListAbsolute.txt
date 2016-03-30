@@ -12,3 +12,11 @@ E:\Zero\Documents\Visual Studio 2013\Projects\Pancasso-Test\Pancasso-Test\obj\Re
 C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\bin\Release\Pancasso-Test.exe.config
 C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso-Test.exe
 C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso-Test.pdb
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso-Test.csprojResolveAssemblyReference.cache
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso_Test.Form1.resources
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso_Test.mouseControlForm.resources
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso_Test.Properties.Resources.resources
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso_Test.SerialMonitor.resources
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\obj\Release\Pancasso-Test.csproj.GenerateResource.Cache
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\bin\Release\Pancasso-Test.exe
+C:\Users\chris\Documents\GitKraken\Pancasso\Desktop\Pancasso-Test\bin\Release\Pancasso-Test.pdb

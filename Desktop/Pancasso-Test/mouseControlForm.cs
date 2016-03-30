@@ -41,7 +41,7 @@ namespace Pancasso_Test
         }
 
 
-        private bool sendToPancasso(string x, string y, string z)
+        public bool sendToPancasso(string x, string y, string z)
         {
             bool state = true;
             string newPosition = "x" + x + "y" + y + "z" + z;
@@ -83,8 +83,38 @@ namespace Pancasso_Test
             panel1.Invalidate();
         }
 
+        public void SVGDisplay(string x, string y, string z)
+        {
+            lblLSX.Text = x;
+            lblLSY.Text = y;
+            //Draw the updated position
+            DrawPoint(int.Parse(lblCPX.Text), int.Parse(lblCPY.Text));
+        }
+
+        public void SVGDisplay(string X, string Y)
+        {
+            lblLSX.Text = X;
+            lblLSY.Text = Y;
+            
+            DrawPoint(int.Parse(lblCPX.Text), int.Parse(lblCPY.Text));
+        }
+
+        private void DrawPoint(int X, int Y, Point[] curvePoints)
+        {
+            var redPen = new Pen(Color.Red, 3);
+
+            using (Graphics bufferOverlay = Graphics.FromImage(overlay))
+            {
+                bufferOverlay.DrawCurve(redPen, curvePoints);
+                bufferOverlay.Clear(Color.Transparent);
+                bufferOverlay.FillEllipse(Brushes.Red, (X - 3), (400 - Y - 3), 6, 6);
+            }
+            pbOverlay.Invalidate();
+        }
+
         private void DrawPoint(int X, int Y)
         {
+
             using (Graphics bufferOverlay = Graphics.FromImage(overlay))
             {
                 bufferOverlay.Clear(Color.Transparent);

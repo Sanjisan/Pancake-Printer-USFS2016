@@ -37,8 +37,8 @@ namespace Pancasso_Test
         /// <summary>
         /// Holds path information based on color. Each path is read in to a list in value.
         /// </summary>
-        private SortedDictionary<string, List<string>> pathDetails = new SortedDictionary<string, List<string>>();
-        private List<string> path = new List<string>();
+        private SortedDictionary<string, string[]> pathDetails = new SortedDictionary<string, string[]>();
+        private string[] path;
         private static string _svgLocation;
         private string SvgLocation { get { return _svgLocation; } }
 
@@ -91,14 +91,14 @@ namespace Pancasso_Test
 
                             foreach (string s in words)
                             {
-                                if (!s.Contains("inkscape:connector-curvature=") || !!s.Contains("id=") || !s.Contains("stroke") || !s.Contains("fill"))
-                                    path.Add(s);
+                                //if (!s.Contains("inkscape:connector-curvature=") || !!s.Contains("id=") || !s.Contains("stroke") || !s.Contains("fill"))
+                                    //path.Add(s);
                             }
 
                             pathIterator++;
                         } while (fileText.ElementAt(pathIterator).Contains("/>"));
 
-                        pathDetails.Add(color, path);
+                        //pathDetails.Add(color, path);
                     }
 
                     // Continue from this line. End of path
