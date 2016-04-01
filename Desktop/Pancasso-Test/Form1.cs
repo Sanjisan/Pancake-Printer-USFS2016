@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Pancasso_Test
 {
@@ -81,10 +82,10 @@ namespace Pancasso_Test
             serialMon.Show();
         }
 
-        private void SVGButton_Click(object sender, EventArgs e)
-        {
-            if (File.Exists(@SVGLocationBox.Text))
-            {
+        private async void SVGButton_Click(object sender, EventArgs e)
+        {   
+            //if (File.Exists(@SVGLocationBox.Text))
+            //{
                 mouseControlForm mouseForm = new mouseControlForm();
                 mouseForm.setPanPort(panPort);
                 mouseForm.Show();
@@ -99,29 +100,70 @@ namespace Pancasso_Test
                 var testSend = new Queue<Point>();
 
                 // Starting values for dummy pancasso input
-                points.X = 270;
-                points.Y = 250;
+                points.X = 390;
+                points.Y = 350;
 
                 // Generate more dummy values, and push to queue.
-                while (points.X < 540 && points.Y < 360)
+                while (points.X > 320) //1
+                {
+                    points.X--;
+                    points.Y--;
+
+                    testSend.Enqueue(points);
+                }
+                while (points.X < 460) //2
                 {
                     points.X++;
+
+                    testSend.Enqueue(points);
+                }
+                while (points.X > 390) //3
+                {
+                    points.X--;
+                    points.Y--;
+
+                    testSend.Enqueue(points);
+                }
+                while (points.X > 320) //4
+                {
+                    points.X--;
+                    points.Y++;
+
+                    testSend.Enqueue(points);
+                }
+                while (points.X > 250) //5
+                {
+                    points.X--;
+                    points.Y--;
+
+                    testSend.Enqueue(points);
+                }
+                while (points.X < 530) // 6
+                {
+                    points.X++;
+
+                    testSend.Enqueue(points);
+                }
+                while (points.X > 390) // 7
+                {
+                    points.X--;
                     points.Y++;
 
                     testSend.Enqueue(points);
                 }
 
-                // Dequeue dummy values and actually send to pancasso
-                while (testSend.Count >= 1)
+            // Dequeue dummy values and actually send to pancasso
+            while (testSend.Count >= 1)
                 {
                     points = testSend.Dequeue();
-                    mouseForm.sendToPancasso(points.X.ToString(), points.Y.ToString(), "0");
+                    mouseForm.sendToPancasso(points.X.ToString(), points.Y.ToString(), "-40");
+                    await Task.Delay(5);
                     mouseForm.SVGDisplay(points.X.ToString(), points.Y.ToString());
                 }
-            }
+            //}
 
-            else
-                MessageBox.Show("Enter a valid path for the SVG file. ie. C:\\test.svg");
+            //else
+                //MessageBox.Show("Enter a valid path for the SVG file. ie. C:\\test.svg");
         }
     }
 }

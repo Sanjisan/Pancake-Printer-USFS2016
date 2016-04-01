@@ -52,6 +52,7 @@
             // panPort
             // 
             this.panPort.BaudRate = 256000;
+            this.panPort.WriteBufferSize = 32;
             // 
             // btnGetPorts
             // 
