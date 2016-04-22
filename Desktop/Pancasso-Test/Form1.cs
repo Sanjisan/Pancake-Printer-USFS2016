@@ -82,6 +82,7 @@ namespace Pancasso_Test
             serialMon.Show();
         }
 
+        //TODO: Change to file input from hardcoded
         private async void SVGButton_Click(object sender, EventArgs e)
         {   
             //if (File.Exists(@SVGLocationBox.Text))
