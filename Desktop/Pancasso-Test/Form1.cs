@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.IO;
-using System.Threading.Tasks;
+using System.Collections;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace Pancasso_Test
 {
@@ -82,89 +84,34 @@ namespace Pancasso_Test
             serialMon.Show();
         }
 
-        //TODO: Change to file input from hardcoded
-        private async void SVGButton_Click(object sender, EventArgs e)
-        {   
-            //if (File.Exists(@SVGLocationBox.Text))
-            //{
-                mouseControlForm mouseForm = new mouseControlForm();
-                mouseForm.setPanPort(panPort);
-                mouseForm.Show();
+        private string _filePath = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
 
-                InterpretSVG svg;
-                var points = new Point();
+        private void readBitmapButton_Click(object sender, EventArgs e)
+        {
+            _filePath = Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName;
+            System.IO.StreamWriter file = new System.IO.StreamWriter(_filePath + @"\test_assets\test.txt");
 
-                //SerialMonitor serialMon = new SerialMonitor();
-                //serialMon.setPanPort(panPort);
-                //serialMon.Show();
+            Bitmap img = new Bitmap(_filePath + @"\test_assets\triforcebitmap.bmp");
 
-                var testSend = new Queue<Point>();
+            byte[,] byteArr = new byte[img.Height, img.Width];
 
-                // Starting values for dummy pancasso input
-                points.X = 390;
-                points.Y = 350;
-
-                // Generate more dummy values, and push to queue.
-                while (points.X > 320) //1
+            for (int i = 0; i < img.Height; i++)
+            {
+                for (int j = 0; j < img.Width; j++)
                 {
-                    points.X--;
-                    points.Y--;
+                    Color c = img.GetPixel(j, i);
 
-                    testSend.Enqueue(points);
+                    int r = c.R;
+                    if (r > 100)
+                        byteArr[i, j] = 0;
+                    else
+                        byteArr[i, j] = 1;
+                    file.Write(byteArr[i, j] + " ");
                 }
-                while (points.X < 460) //2
-                {
-                    points.X++;
+                file.WriteLine();
+            }
 
-                    testSend.Enqueue(points);
-                }
-                while (points.X > 390) //3
-                {
-                    points.X--;
-                    points.Y--;
-
-                    testSend.Enqueue(points);
-                }
-                while (points.X > 320) //4
-                {
-                    points.X--;
-                    points.Y++;
-
-                    testSend.Enqueue(points);
-                }
-                while (points.X > 250) //5
-                {
-                    points.X--;
-                    points.Y--;
-
-                    testSend.Enqueue(points);
-                }
-                while (points.X < 530) // 6
-                {
-                    points.X++;
-
-                    testSend.Enqueue(points);
-                }
-                while (points.X > 390) // 7
-                {
-                    points.X--;
-                    points.Y++;
-
-                    testSend.Enqueue(points);
-                }
-
-            // Dequeue dummy values and actually send to pancasso
-            while (testSend.Count >= 1)
-                {
-                    points = testSend.Dequeue();
-                    mouseForm.sendToPancasso(points.X.ToString(), points.Y.ToString(), "-40");
-                    await Task.Delay(5);
-                    mouseForm.SVGDisplay(points.X.ToString(), points.Y.ToString());
-                }
-            //}
-
-            //else
-                //MessageBox.Show("Enter a valid path for the SVG file. ie. C:\\test.svg");
+            file.Close();
         }
     }
 }

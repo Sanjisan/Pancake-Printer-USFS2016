@@ -45,8 +45,7 @@
             this.btnOpenMonitor = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.SVGButton = new System.Windows.Forms.Button();
-            this.SVGLocationBox = new System.Windows.Forms.TextBox();
+            this.readBitmapButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panPort
@@ -203,31 +202,22 @@
             this.label2.Size = new System.Drawing.Size(144, 3);
             this.label2.TabIndex = 15;
             // 
-            // SVGButton
+            // readBitmapButton
             // 
-            this.SVGButton.Location = new System.Drawing.Point(18, 459);
-            this.SVGButton.Name = "SVGButton";
-            this.SVGButton.Size = new System.Drawing.Size(144, 32);
-            this.SVGButton.TabIndex = 16;
-            this.SVGButton.Text = "Use SVG";
-            this.SVGButton.UseVisualStyleBackColor = true;
-            this.SVGButton.Click += new System.EventHandler(this.SVGButton_Click);
-            // 
-            // SVGLocationBox
-            // 
-            this.SVGLocationBox.Location = new System.Drawing.Point(18, 427);
-            this.SVGLocationBox.Name = "SVGLocationBox";
-            this.SVGLocationBox.Size = new System.Drawing.Size(142, 26);
-            this.SVGLocationBox.TabIndex = 17;
-            this.SVGLocationBox.Text = "Full SVG Path";
+            this.readBitmapButton.Location = new System.Drawing.Point(18, 421);
+            this.readBitmapButton.Name = "readBitmapButton";
+            this.readBitmapButton.Size = new System.Drawing.Size(144, 35);
+            this.readBitmapButton.TabIndex = 18;
+            this.readBitmapButton.Text = "Read Bitmap";
+            this.readBitmapButton.UseVisualStyleBackColor = true;
+            this.readBitmapButton.Click += new System.EventHandler(this.readBitmapButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(176, 494);
-            this.Controls.Add(this.SVGLocationBox);
-            this.Controls.Add(this.SVGButton);
+            this.ClientSize = new System.Drawing.Size(176, 595);
+            this.Controls.Add(this.readBitmapButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOpenMonitor);
@@ -244,7 +234,7 @@
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.btnGetPorts);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximumSize = new System.Drawing.Size(193, 550);
+            this.MaximumSize = new System.Drawing.Size(193, 750);
             this.MinimumSize = new System.Drawing.Size(193, 550);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -271,8 +261,7 @@
         private System.Windows.Forms.Button btnOpenMonitor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button SVGButton;
-        private System.Windows.Forms.TextBox SVGLocationBox;
+        private System.Windows.Forms.Button readBitmapButton;
     }
 }
 
