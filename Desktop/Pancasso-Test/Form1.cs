@@ -114,7 +114,7 @@ namespace Pancasso_Test
                 //file.WriteLine();
             }
 
-            int binaryHold = 0;
+            byte binaryHold = 0;
             for (int i = 0; i < img.Height; i++)
             {
                 for (int j = 0; j < img.Width; j+=8)
@@ -122,28 +122,28 @@ namespace Pancasso_Test
                     try
                     {
                         if (byteArr[i, j] == 1)
-                            binaryHold += Convert.ToInt32(Math.Pow(2, 0));
+                            binaryHold += Convert.ToByte(Math.Pow(2, 0));
 
                         if (byteArr[i, j + 1] == 1)
-                            binaryHold += Convert.ToInt32(Math.Pow(2, 1));
+                            binaryHold += Convert.ToByte(Math.Pow(2, 1));
 
                         if (byteArr[i, j + 2] == 1)
-                            binaryHold += Convert.ToInt32(Math.Pow(2, 2));
+                            binaryHold += Convert.ToByte(Math.Pow(2, 2));
 
                         if (byteArr[i, j + 3] == 1)
-                            binaryHold += Convert.ToInt32(Math.Pow(2, 3));
+                            binaryHold += Convert.ToByte(Math.Pow(2, 3));
 
                         if (byteArr[i, j + 4] == 1)
-                            binaryHold += Convert.ToInt32(Math.Pow(2, 4));
+                            binaryHold += Convert.ToByte(Math.Pow(2, 4));
 
                         if (byteArr[i, j + 5] == 1)
-                            binaryHold += Convert.ToInt32(Math.Pow(2, 5));
+                            binaryHold += Convert.ToByte(Math.Pow(2, 5));
 
                         if (byteArr[i, j + 6] == 1)
-                            binaryHold += Convert.ToInt32(Math.Pow(2, 6));
+                            binaryHold += Convert.ToByte(Math.Pow(2, 6));
 
                         if (byteArr[i, j + 7] == 1)
-                            binaryHold += Convert.ToInt32(Math.Pow(2, 7));
+                            binaryHold += Convert.ToByte(Math.Pow(2, 7));
 
                         file.Write(binaryHold + " ");
                         binaryHold = 0;
