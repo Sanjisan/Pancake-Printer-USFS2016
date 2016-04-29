@@ -12,6 +12,8 @@ using System.IO;
 using System.Collections;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Pancasso_Test
 {
@@ -85,6 +87,7 @@ namespace Pancasso_Test
         }
 
         private string _filePath = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+        static readonly Regex binary = new Regex("^[01]{1,32}$", RegexOptions.Compiled);
 
         private void readBitmapButton_Click(object sender, EventArgs e)
         {
@@ -106,8 +109,48 @@ namespace Pancasso_Test
                         byteArr[i, j] = 0;
                     else
                         byteArr[i, j] = 1;
-                    file.Write(byteArr[i, j] + " ");
+                    //file.Write(byteArr[i, j] + " ");
                 }
+                //file.WriteLine();
+            }
+
+            int binaryHold = 0;
+            for (int i = 0; i < img.Height; i++)
+            {
+                for (int j = 0; j < img.Width; j+=8)
+                {
+                    try
+                    {
+                        if (byteArr[i, j] == 1)
+                            binaryHold += Convert.ToInt32(Math.Pow(2, 0));
+
+                        if (byteArr[i, j + 1] == 1)
+                            binaryHold += Convert.ToInt32(Math.Pow(2, 1));
+
+                        if (byteArr[i, j + 2] == 1)
+                            binaryHold += Convert.ToInt32(Math.Pow(2, 2));
+
+                        if (byteArr[i, j + 3] == 1)
+                            binaryHold += Convert.ToInt32(Math.Pow(2, 3));
+
+                        if (byteArr[i, j + 4] == 1)
+                            binaryHold += Convert.ToInt32(Math.Pow(2, 4));
+
+                        if (byteArr[i, j + 5] == 1)
+                            binaryHold += Convert.ToInt32(Math.Pow(2, 5));
+
+                        if (byteArr[i, j + 6] == 1)
+                            binaryHold += Convert.ToInt32(Math.Pow(2, 6));
+
+                        if (byteArr[i, j + 7] == 1)
+                            binaryHold += Convert.ToInt32(Math.Pow(2, 7));
+
+                        file.Write(binaryHold + " ");
+                        binaryHold = 0;
+                    }
+                    catch { }
+                }
+
                 file.WriteLine();
             }
 
