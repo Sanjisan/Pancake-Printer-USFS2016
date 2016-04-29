@@ -113,46 +113,44 @@ namespace Pancasso_Test
                 }
                 //file.WriteLine();
             }
-
+            int count = 0;
             byte binaryHold = 0;
-            for (int i = 0; i < img.Height; i++)
+            for (int i = 0; i < (img.Height*img.Width); i+=8)
             {
-                for (int j = 0; j < img.Width; j+=8)
+                count++;
+                try
                 {
-                    try
-                    {
-                        if (byteArr[i, j] == 1)
-                            binaryHold += Convert.ToByte(Math.Pow(2, 0));
+                    if (i < (img.Height*img.Width) && byteArr[i/img.Width, i%img.Width] == 1)
+                        binaryHold += Convert.ToByte(Math.Pow(2, 0));
 
-                        if (byteArr[i, j + 1] == 1)
-                            binaryHold += Convert.ToByte(Math.Pow(2, 1));
+                    if (i+1 < (img.Height*img.Width) && byteArr[i / img.Width, (1+i) % img.Width] == 1)
+                        binaryHold += Convert.ToByte(Math.Pow(2, 1));
 
-                        if (byteArr[i, j + 2] == 1)
-                            binaryHold += Convert.ToByte(Math.Pow(2, 2));
+                    if (i+2 < (img.Height*img.Width) && byteArr[i / img.Width, (2+i) % img.Width] == 1)
+                        binaryHold += Convert.ToByte(Math.Pow(2, 2));
 
-                        if (byteArr[i, j + 3] == 1)
-                            binaryHold += Convert.ToByte(Math.Pow(2, 3));
+                    if (i+3 < (img.Height*img.Width) && byteArr[i / img.Width, (3+i) % img.Width] == 1)
+                        binaryHold += Convert.ToByte(Math.Pow(2, 3));         
+                                                                              
+                    if (i+4 < (img.Height*img.Width) && byteArr[i / img.Width, (4+i) % img.Width] == 1)
+                        binaryHold += Convert.ToByte(Math.Pow(2, 4));         
+                                                                              
+                    if (i+5 < (img.Height*img.Width) && byteArr[i / img.Width, (5+i) % img.Width] == 1)
+                        binaryHold += Convert.ToByte(Math.Pow(2, 5));         
+                                                                              
+                    if (i+6 < (img.Height*img.Width) && byteArr[i / img.Width, (6+i) % img.Width] == 1)
+                        binaryHold += Convert.ToByte(Math.Pow(2, 6));
 
-                        if (byteArr[i, j + 4] == 1)
-                            binaryHold += Convert.ToByte(Math.Pow(2, 4));
+                    if (i+7 < (img.Height*img.Width) && byteArr[i / img.Width, (7+i) % img.Width] == 1)
+                        binaryHold += Convert.ToByte(Math.Pow(2, 7));
 
-                        if (byteArr[i, j + 5] == 1)
-                            binaryHold += Convert.ToByte(Math.Pow(2, 5));
-
-                        if (byteArr[i, j + 6] == 1)
-                            binaryHold += Convert.ToByte(Math.Pow(2, 6));
-
-                        if (byteArr[i, j + 7] == 1)
-                            binaryHold += Convert.ToByte(Math.Pow(2, 7));
-
-                        file.Write(binaryHold + " ");
-                        binaryHold = 0;
-                    }
-                    catch { }
+                    file.Write(binaryHold + " ");
+                    binaryHold = 0;
                 }
-
-                file.WriteLine();
+                catch { }
             }
+            count = count;
+            file.WriteLine();
 
             file.Close();
         }
