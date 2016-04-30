@@ -45,11 +45,16 @@
             this.btnOpenMonitor = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.readBitmapButton = new System.Windows.Forms.Button();
+            this.btnSendBitmap = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.sendProgBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // panPort
             // 
             this.panPort.BaudRate = 256000;
+            this.panPort.WriteBufferSize = 64;
             // 
             // btnGetPorts
             // 
@@ -185,11 +190,52 @@
             this.label2.Size = new System.Drawing.Size(96, 2);
             this.label2.TabIndex = 15;
             // 
+            // readBitmapButton
+            // 
+            this.readBitmapButton.Location = new System.Drawing.Point(12, 281);
+            this.readBitmapButton.Margin = new System.Windows.Forms.Padding(2);
+            this.readBitmapButton.Name = "readBitmapButton";
+            this.readBitmapButton.Size = new System.Drawing.Size(96, 23);
+            this.readBitmapButton.TabIndex = 18;
+            this.readBitmapButton.Text = "Load Bitmap";
+            this.readBitmapButton.UseVisualStyleBackColor = true;
+            this.readBitmapButton.Click += new System.EventHandler(this.readBitmapButton_Click);
+            // 
+            // btnSendBitmap
+            // 
+            this.btnSendBitmap.Enabled = false;
+            this.btnSendBitmap.Location = new System.Drawing.Point(12, 309);
+            this.btnSendBitmap.Name = "btnSendBitmap";
+            this.btnSendBitmap.Size = new System.Drawing.Size(96, 23);
+            this.btnSendBitmap.TabIndex = 19;
+            this.btnSendBitmap.Text = "Send Bitmap";
+            this.btnSendBitmap.UseVisualStyleBackColor = true;
+            this.btnSendBitmap.Click += new System.EventHandler(this.btnSendBitmap_Click);
+            // 
+            // label3
+            // 
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Location = new System.Drawing.Point(12, 274);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 2);
+            this.label3.TabIndex = 20;
+            // 
+            // sendProgBar
+            // 
+            this.sendProgBar.Location = new System.Drawing.Point(12, 338);
+            this.sendProgBar.Name = "sendProgBar";
+            this.sendProgBar.Size = new System.Drawing.Size(96, 23);
+            this.sendProgBar.TabIndex = 21;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(120, 281);
+            this.ClientSize = new System.Drawing.Size(120, 387);
+            this.Controls.Add(this.sendProgBar);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnSendBitmap);
+            this.Controls.Add(this.readBitmapButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOpenMonitor);
@@ -205,8 +251,8 @@
             this.Controls.Add(this.ddlPorts);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.btnGetPorts);
-            this.MaximumSize = new System.Drawing.Size(136, 320);
-            this.MinimumSize = new System.Drawing.Size(136, 320);
+            this.MaximumSize = new System.Drawing.Size(134, 501);
+            this.MinimumSize = new System.Drawing.Size(134, 371);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -232,6 +278,10 @@
         private System.Windows.Forms.Button btnOpenMonitor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button readBitmapButton;
+        private System.Windows.Forms.Button btnSendBitmap;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar sendProgBar;
     }
 }
 
