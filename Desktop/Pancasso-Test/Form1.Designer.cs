@@ -46,19 +46,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.readBitmapButton = new System.Windows.Forms.Button();
+            this.btnSendBitmap = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.sendProgBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // panPort
             // 
             this.panPort.BaudRate = 256000;
-            this.panPort.WriteBufferSize = 32;
+            this.panPort.WriteBufferSize = 64;
             // 
             // btnGetPorts
             // 
-            this.btnGetPorts.Location = new System.Drawing.Point(18, 18);
-            this.btnGetPorts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnGetPorts.Location = new System.Drawing.Point(12, 12);
             this.btnGetPorts.Name = "btnGetPorts";
-            this.btnGetPorts.Size = new System.Drawing.Size(144, 35);
+            this.btnGetPorts.Size = new System.Drawing.Size(96, 23);
             this.btnGetPorts.TabIndex = 0;
             this.btnGetPorts.Text = "Ports";
             this.btnGetPorts.UseVisualStyleBackColor = true;
@@ -67,10 +69,9 @@
             // btnConnect
             // 
             this.btnConnect.CausesValidation = false;
-            this.btnConnect.Location = new System.Drawing.Point(18, 105);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnConnect.Location = new System.Drawing.Point(12, 68);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(144, 35);
+            this.btnConnect.Size = new System.Drawing.Size(96, 23);
             this.btnConnect.TabIndex = 2;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -79,75 +80,67 @@
             // ddlPorts
             // 
             this.ddlPorts.FormattingEnabled = true;
-            this.ddlPorts.Location = new System.Drawing.Point(18, 63);
-            this.ddlPorts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ddlPorts.Location = new System.Drawing.Point(12, 41);
             this.ddlPorts.Name = "ddlPorts";
-            this.ddlPorts.Size = new System.Drawing.Size(142, 28);
+            this.ddlPorts.Size = new System.Drawing.Size(96, 21);
             this.ddlPorts.TabIndex = 3;
             // 
             // lblx
             // 
             this.lblx.AutoSize = true;
-            this.lblx.Location = new System.Drawing.Point(14, 265);
-            this.lblx.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblx.Location = new System.Drawing.Point(9, 172);
             this.lblx.Name = "lblx";
-            this.lblx.Size = new System.Drawing.Size(37, 20);
+            this.lblx.Size = new System.Drawing.Size(26, 13);
             this.lblx.TabIndex = 4;
             this.lblx.Text = "X = ";
             // 
             // lbly
             // 
             this.lbly.AutoSize = true;
-            this.lbly.Location = new System.Drawing.Point(14, 305);
-            this.lbly.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbly.Location = new System.Drawing.Point(9, 198);
             this.lbly.Name = "lbly";
-            this.lbly.Size = new System.Drawing.Size(37, 20);
+            this.lbly.Size = new System.Drawing.Size(26, 13);
             this.lbly.TabIndex = 5;
             this.lbly.Text = "Y = ";
             // 
             // lblz
             // 
             this.lblz.AutoSize = true;
-            this.lblz.Location = new System.Drawing.Point(14, 345);
-            this.lblz.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblz.Location = new System.Drawing.Point(9, 224);
             this.lblz.Name = "lblz";
-            this.lblz.Size = new System.Drawing.Size(36, 20);
+            this.lblz.Size = new System.Drawing.Size(26, 13);
             this.lblz.TabIndex = 6;
             this.lblz.Text = "Z = ";
             // 
             // txtX
             // 
-            this.txtX.Location = new System.Drawing.Point(48, 260);
-            this.txtX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtX.Location = new System.Drawing.Point(32, 169);
             this.txtX.Name = "txtX";
-            this.txtX.Size = new System.Drawing.Size(112, 26);
+            this.txtX.Size = new System.Drawing.Size(76, 20);
             this.txtX.TabIndex = 7;
             this.txtX.Text = "400";
             // 
             // txtY
             // 
-            this.txtY.Location = new System.Drawing.Point(48, 300);
-            this.txtY.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtY.Location = new System.Drawing.Point(32, 195);
             this.txtY.Name = "txtY";
-            this.txtY.Size = new System.Drawing.Size(112, 26);
+            this.txtY.Size = new System.Drawing.Size(76, 20);
             this.txtY.TabIndex = 8;
             this.txtY.Text = "200";
             // 
             // txtZ
             // 
-            this.txtZ.Location = new System.Drawing.Point(48, 340);
-            this.txtZ.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtZ.Location = new System.Drawing.Point(32, 221);
             this.txtZ.Name = "txtZ";
-            this.txtZ.Size = new System.Drawing.Size(112, 26);
+            this.txtZ.Size = new System.Drawing.Size(76, 20);
             this.txtZ.TabIndex = 9;
             this.txtZ.Text = "0";
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(18, 378);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSend.Location = new System.Drawing.Point(12, 246);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(144, 35);
+            this.btnSend.Size = new System.Drawing.Size(96, 23);
             this.btnSend.TabIndex = 10;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -156,18 +149,16 @@
             // lblDebug
             // 
             this.lblDebug.AutoSize = true;
-            this.lblDebug.Location = new System.Drawing.Point(18, 145);
-            this.lblDebug.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDebug.Location = new System.Drawing.Point(12, 94);
             this.lblDebug.Name = "lblDebug";
-            this.lblDebug.Size = new System.Drawing.Size(0, 20);
+            this.lblDebug.Size = new System.Drawing.Size(0, 13);
             this.lblDebug.TabIndex = 11;
             // 
             // btnOpenGrid
             // 
-            this.btnOpenGrid.Location = new System.Drawing.Point(18, 158);
-            this.btnOpenGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnOpenGrid.Location = new System.Drawing.Point(12, 103);
             this.btnOpenGrid.Name = "btnOpenGrid";
-            this.btnOpenGrid.Size = new System.Drawing.Size(144, 35);
+            this.btnOpenGrid.Size = new System.Drawing.Size(96, 23);
             this.btnOpenGrid.TabIndex = 12;
             this.btnOpenGrid.Text = "Mouse Control";
             this.btnOpenGrid.UseVisualStyleBackColor = true;
@@ -175,10 +166,9 @@
             // 
             // btnOpenMonitor
             // 
-            this.btnOpenMonitor.Location = new System.Drawing.Point(18, 205);
-            this.btnOpenMonitor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnOpenMonitor.Location = new System.Drawing.Point(12, 133);
             this.btnOpenMonitor.Name = "btnOpenMonitor";
-            this.btnOpenMonitor.Size = new System.Drawing.Size(144, 35);
+            this.btnOpenMonitor.Size = new System.Drawing.Size(96, 23);
             this.btnOpenMonitor.TabIndex = 13;
             this.btnOpenMonitor.Text = "Serial Monitor";
             this.btnOpenMonitor.UseVisualStyleBackColor = true;
@@ -187,36 +177,64 @@
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(18, 248);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 161);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 3);
+            this.label1.Size = new System.Drawing.Size(96, 2);
             this.label1.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Location = new System.Drawing.Point(18, 148);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(12, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 3);
+            this.label2.Size = new System.Drawing.Size(96, 2);
             this.label2.TabIndex = 15;
             // 
             // readBitmapButton
             // 
-            this.readBitmapButton.Location = new System.Drawing.Point(18, 421);
+            this.readBitmapButton.Location = new System.Drawing.Point(12, 281);
+            this.readBitmapButton.Margin = new System.Windows.Forms.Padding(2);
             this.readBitmapButton.Name = "readBitmapButton";
-            this.readBitmapButton.Size = new System.Drawing.Size(144, 35);
+            this.readBitmapButton.Size = new System.Drawing.Size(96, 23);
             this.readBitmapButton.TabIndex = 18;
-            this.readBitmapButton.Text = "Read Bitmap";
+            this.readBitmapButton.Text = "Load Bitmap";
             this.readBitmapButton.UseVisualStyleBackColor = true;
             this.readBitmapButton.Click += new System.EventHandler(this.readBitmapButton_Click);
             // 
+            // btnSendBitmap
+            // 
+            this.btnSendBitmap.Enabled = false;
+            this.btnSendBitmap.Location = new System.Drawing.Point(12, 309);
+            this.btnSendBitmap.Name = "btnSendBitmap";
+            this.btnSendBitmap.Size = new System.Drawing.Size(96, 23);
+            this.btnSendBitmap.TabIndex = 19;
+            this.btnSendBitmap.Text = "Send Bitmap";
+            this.btnSendBitmap.UseVisualStyleBackColor = true;
+            this.btnSendBitmap.Click += new System.EventHandler(this.btnSendBitmap_Click);
+            // 
+            // label3
+            // 
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Location = new System.Drawing.Point(12, 274);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 2);
+            this.label3.TabIndex = 20;
+            // 
+            // sendProgBar
+            // 
+            this.sendProgBar.Location = new System.Drawing.Point(12, 338);
+            this.sendProgBar.Name = "sendProgBar";
+            this.sendProgBar.Size = new System.Drawing.Size(96, 23);
+            this.sendProgBar.TabIndex = 21;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(176, 595);
+            this.ClientSize = new System.Drawing.Size(120, 387);
+            this.Controls.Add(this.sendProgBar);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnSendBitmap);
             this.Controls.Add(this.readBitmapButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -233,9 +251,8 @@
             this.Controls.Add(this.ddlPorts);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.btnGetPorts);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximumSize = new System.Drawing.Size(193, 750);
-            this.MinimumSize = new System.Drawing.Size(193, 550);
+            this.MaximumSize = new System.Drawing.Size(134, 501);
+            this.MinimumSize = new System.Drawing.Size(134, 371);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -262,6 +279,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button readBitmapButton;
+        private System.Windows.Forms.Button btnSendBitmap;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar sendProgBar;
     }
 }
 
