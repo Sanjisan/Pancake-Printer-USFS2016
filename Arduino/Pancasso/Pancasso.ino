@@ -4,6 +4,9 @@
 #define EXTRUSIONSTART 500
 #define EXTRUSIONSTOP 500
 
+#define MINMOVETIME 10
+#define MAXMOVETIME 1000
+
 #define PivotPin 9
 #define ShoulderPin 7
 #define ElbowPin 8
@@ -19,6 +22,8 @@
 #define WorkspaceY 400
 
 byte Workspace[WorkspaceY][WorkspaceX];
+
+
 
 struct ServoDef {
   //current frequency
@@ -129,6 +134,8 @@ void setup() {
   bool randomMoves = false;
   bool manualMoves = false;
   bool paintLayer = true;
+
+  bool firstMove = true;
   
 void loop() {
   if (randomMoves)
@@ -143,6 +150,9 @@ void loop() {
 
   if (paintLayer)
   {
+    gripper.extruding = false;
+    gripper.servo.writeMicroseconds(gripper.off);
+    firstMove = true;
     doPaintLayer();
   }
 }
@@ -158,6 +168,9 @@ void initilizeWorkspace()
 
 void doPaintLayer()
 {
+  //init workspace
+  initilizeWorkspace();
+  
   //move to waiting position
   x = 400;
   y = 250;
@@ -176,6 +189,7 @@ void doPaintLayer()
   //read the image dimentions from serial
   while (count < 5)
   {
+    
     if (Serial.available())
     {
       option = Serial.read();
@@ -201,7 +215,17 @@ void doPaintLayer()
         imageHeight = value;
       }
       count++;
+      Serial.print(option);
+      Serial.print(" - ");
+      Serial.println(value);
     }
+    /**
+    else
+    {
+      delay(1000);
+      Serial.println("Waiting");
+    }
+    **/
   }
   count = 0;
   int wsX = imageX;
@@ -213,6 +237,10 @@ void doPaintLayer()
     {
       //get a byte
       byte eightPixels = Serial.read();
+      /**
+      Serial.print("I got :");
+      Serial.println(eightPixels);
+      **/
       //step through each bit in the byte
       for (byte i = 0; i < 8; i++)
       {
@@ -222,19 +250,43 @@ void doPaintLayer()
         }
         //update the x and y positions;
         wsX++;
-        if (wsX > (imageX + imageWidth))
+        if (wsX >= (imageX + imageWidth))
         {
           wsX = imageX;
           wsY++;
         }
+      }
       count++;
+    }
+    /**
+    else
+    {
+      delay(1000);
+      Serial.print("waiting for ");
+      Serial.print(((imageWidth * imageHeight - 1) / 8 + 1) - count);
+      Serial.println("bytes");
+    }
+    **/
+  }
+  /**
+  if (count)
+  {
+    Serial.println("All bytes recieved! Here is the image:");
+    for (int i = imageY; i < (imageY + imageHeight); i++)
+    {
+      Serial.println();
+      for (int j = (imageX / 8); j < ((imageX + imageWidth -1)/8 +1); j++)
+      {
+        Serial.print(Workspace[i][j]);
+        Serial.print(" ");
       }
     }
   }
+  **/
 
   //start searching image from the home position x400y200
-  x = 400;
-  y = 200;
+  x = imageX;
+  y = imageY;
   bool pointsExist = false;
   bool pointFound = false;
   bool finishedLayer = false;
@@ -242,12 +294,13 @@ void doPaintLayer()
   {
     pointsExist = false;
     //check if any points still exist
-    for (int i = imageY; i <= (imageY + imageHeight); i++)
+    for (int i = imageY; i < (imageY + imageHeight); i++)
     {
-      for (int j = (imageX / 8); j <= ((imageX + imageWidth) / 8 ); j++)
+      for (int j = (imageX / 8); j < ((imageX + imageWidth - 1) / 8 + 1 ); j++)
       {
         if (Workspace[i][j])
         {
+          //Serial.println("The Workspace still has values");
           pointsExist = true;
           finishedLayer = false;
           break;
@@ -257,17 +310,21 @@ void doPaintLayer()
         break;
     }
     if (!pointsExist)
+    {
+      //Serial.println("No more points!");
       break;
+    }
     //find the nearest point and go to it
     pointFound = false;
     if (pointsExist)
     {
+      //Serial.println("Searching For a point");
       for (int i = 1; i < imageWidth; i++)
       {
         //search Top and bottom (variable x constant y
         for (int j = (x - i); j <= (x + i); j++)
         {
-          if ( j < imageX || j > imageX + imageWidth)
+          if ( j >= imageX && j < imageX + imageWidth)
           {
             //top border
             if ( (y - i) >= imageY )
@@ -277,17 +334,29 @@ void doPaintLayer()
                 wsX = j;
                 wsY = y-1;
                 pointFound = true;
+                /*
+                Serial.print("I found:");
+                Serial.print(wsX);
+                Serial.print(",");
+                Serial.println(wsY);
+                */
                 break;
               }
             }
             //bottom border
-            if ( (y + i) <= imageY + imageHeight )
+            if ( (y + i) < (imageY + imageHeight) )
             {
               if (bitRead(Workspace[y+i][j / 8], (j % 8)))
               {
                 wsX = j;
                 wsY = y+1;
                 pointFound = true;
+                /*
+                Serial.print("I found:");
+                Serial.print(wsX);
+                Serial.print(",");
+                Serial.println(wsY);
+                */
                 break;
               }
             }
@@ -296,9 +365,9 @@ void doPaintLayer()
         if (pointFound)
           break;
         //search Left and Right (variable y constant x
-        for (int j = (y - i) + 1; j <= (x + i) -1; j++)
+        for (int j = (y - i); j <= (y + i); j++)
         {
-          if ( j < imageX || j > imageX + imageWidth)
+          if ( j >= imageY && j < (imageY + imageHeight))
           {
             //left border
             if ( (x - i) >= imageX )
@@ -308,6 +377,12 @@ void doPaintLayer()
                 wsX = (x - i);
                 wsY = j;
                 pointFound = true;
+                /*
+                Serial.print("I found:");
+                Serial.print(wsX);
+                Serial.print(",");
+                Serial.println(wsY);
+                */
                 break;
               }
             }
@@ -319,6 +394,12 @@ void doPaintLayer()
                 wsX = (x + i);
                 wsY = j;
                 pointFound = true;
+                /*
+                Serial.print("I found:");
+                Serial.print(wsX);
+                Serial.print(",");
+                Serial.println(wsY);
+                */
                 break;
               }
             }
@@ -330,26 +411,57 @@ void doPaintLayer()
     }
     if (pointFound)
     {
+      //Serial.println("I am moving to position");
       //wait until the last point was reached before moving on
-      while((millis() - timestamp) < 1000 ||
-            (abs(pivot.dvolt - pivot.cvolt) > 25 ||
-             abs(shoulder.dvolt - shoulder.cvolt) > 25 ||
-             abs(elbow.dvolt - elbow.cvolt) > 25))
+
+      delay(MINMOVETIME);
+      
+      while ((millis() - timestamp) < MAXMOVETIME) 
       {
+
+        if (abs(pivot.dvolt - pivot.cvolt) < 75 &&
+             abs(shoulder.dvolt - shoulder.cvolt) < 25 &&
+             abs(elbow.dvolt - elbow.cvolt) < 25)
+        {
+          break;
+        }
+        /*
+        Serial.print(pivot.dvolt);
+        Serial.print("-");
+        Serial.println(pivot.cvolt);
+
+        Serial.print(shoulder.dvolt);
+        Serial.print("-");
+        Serial.println(shoulder.cvolt);
+
+        Serial.print(elbow.dvolt);
+        Serial.print("-");
+        Serial.println(elbow.cvolt);
+        */
         pivot.cvolt = analogRead(pivot.fpin);
         shoulder.cvolt = analogRead(shoulder.fpin);
         elbow.cvolt = analogRead(elbow.fpin);
+        
       }
     
       //we are at the correct spot, turn on the extruder
-      gripper.servo.writeMicroseconds(gripper.on);
-    
-      //wait for the extruder to start etruding
-      if (!gripper.extruding)
+      if (!firstMove)
       {
-        delay(EXTRUSIONSTART);
-        gripper.extruding = true;
+        gripper.servo.writeMicroseconds(gripper.on);
+
+        //wait for the extruder to start etruding
+        if (!gripper.extruding)
+        {
+          delay(EXTRUSIONSTART);
+          gripper.extruding = true;
+        }
       }
+      else
+      {
+        firstMove = false;
+      }
+    
+      
     
       //if the distance to move is greater than 15mm turn off the extruder
       int distance = sqrt(pow(abs(wsX - x),2)+pow(abs(wsY - y),2));
@@ -361,9 +473,18 @@ void doPaintLayer()
       }
 
       //make the move
+      /*
+      Serial.println("I am moving to:");
+      Serial.print("x - ");
+      Serial.println(wsX);
+      Serial.print("y - ");
+      Serial.println(wsY);
+      Serial.print("z - ");
+      Serial.println(imageZ);
+      */
       x = wsX;
       y = wsY;
-      moveArm(x,y,imageZ);
+      moveArm(x,(WorkspaceY - y),imageZ);
 
       //clear the affected pixels 
       
@@ -371,7 +492,10 @@ void doPaintLayer()
       {
         for (int j = x - 1; j < x + 2; j++)
         {
-          bitClear(Workspace[i][j/8],(j%8));
+          if( i >= imageY && i < (imageY+ imageHeight) && j >= imageX && j < (imageX + imageWidth))
+          {
+            bitClear(Workspace[i][j/8],(j%8));
+          }
         }
       }
     } 
@@ -544,9 +668,10 @@ void moveArm(double x, double y, double z)
   timestamp = millis();
 
   //Feedback formulas
+  pivot.dvolt = 0.8031 * pivot.cfreq + 296.73;
   shoulder.dvolt = 0.7956 * shoulder.cfreq + 268.25;
   elbow.dvolt = 0.5424 * elbow.cfreq + 705.37;
-  pivot.dvolt = 0.8031 * pivot.cfreq + 296.73;
+  
 
   //update current voltage
   pivot.cvolt = analogRead(pivot.fpin);
