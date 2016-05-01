@@ -207,7 +207,7 @@ void doPaintLayer()
   int wsX = imageX;
   int wsY = imageY;
   //read from serial and store the picture
-  while ( count < ((imageWidth * imageHeight) / 8))
+  while ( count < ((imageWidth * imageHeight - 1) / 8 + 1))
   {
     if ( Serial.available())
     {
