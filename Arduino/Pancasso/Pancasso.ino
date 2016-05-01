@@ -20,8 +20,6 @@
 
 byte Workspace[WorkspaceY][WorkspaceX];
 
-
-
 struct ServoDef {
   //current frequency
   int cfreq;

@@ -105,10 +105,38 @@ namespace Pancasso_Test
 
         private void readBitmapButton_Click(object sender, EventArgs e)
         {
-            string filePath = Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName;
+            string filePath;
+            Bitmap img;
+
+            filePath = "";
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image Files|*.BMP;|All files (*.*)|*.*";
+            ofd.FilterIndex = 1;
+            ofd.InitialDirectory = _filePath;
+            DialogResult dr = ofd.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                filePath = ofd.FileName;
+            }
+
+            if (filePath != "")
+            {
+                img = new Bitmap(filePath);
+                label4.Text = filePath;
+            }
+            else
+            {
+                filePath = Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName;
+                img = new Bitmap(filePath + @"\test_assets\triforcebitmap.bmp");
+                label4.Text = filePath + @"\test_assets\triforcebitmap.bmp";
+            }
+        
+                
             //System.IO.StreamWriter file = new System.IO.StreamWriter(_filePath + @"\test_assets\test.txt");
 
-            Bitmap img = new Bitmap(filePath + @"\test_assets\triforcebitmap.bmp");
+            
 
             byte[,] byteArr = new byte[img.Height, img.Width];
 
@@ -236,6 +264,11 @@ namespace Pancasso_Test
                 //************************
                 */ 
             }
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
